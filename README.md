@@ -13,11 +13,11 @@ Python 2.7+ or 3.2+ (according to [vermin](https://github.com/netromdk/vermin))
 [rapidfuzz](https://github.com/maxbachmann/RapidFuzz)
 
 ```
-python -m pip install bencode.py psutil rapidfuzz
+python -m pip install bencode.py psutil rapidfuzz==2.15.1
 ```
 or
 ```
-python3 -m pip install bencode.py psutil rapidfuzz
+python3 -m pip install bencode.py psutil rapidfuzz==2.15.1
 ```
 or
 ```
@@ -48,17 +48,22 @@ optional arguments:
                         3: use fuzzy string matching and choose files automatically but be prompted before proceeding
                         Defaults to 0
   -d, --debug           Enable debug
+
+  -r, --remap           Searches for all torrents tagged "fixme" in qbittorrent and edits these. Avoids the need to have to copy infohash.
 ```
 
 Windows:
 ```
 py qbit_automatch.py --hash HASH --search_dir SEARCH_DIR
+
+example with -r
+py qbit_automatch.py -r True --search_dir SEARCH_DIR
 ```
 Linux/OS X:
 ```
 python3 qbit_automatch.py --hash HASH --search_dir SEARCH_DIR
 ```
-* hash: Torrent hash. Can be obtained in qBittorrent UI by: Right Click Torrent -> Copy -> Hash  
+* hash: Torrent hash. Can be obtained in qBittorrent UI by: Right Click Torrent -> Copy -> Hash #Note you can right click and assign tag fixme, then use -r True to avoid needing individual hashes if doing many updates
 * search_dir: the absolute path of the root folder of the files which are already on the disk  
 * bt_backup: If your qBittorrent/BT_backup is not in the default location then you can use this parameter and input the correct absolute path  
 * fix_duplicates: If the script is matching torrent files with more than one disk file you can use this option to fix it manually or use string matching to decide the correct file  
